@@ -20,17 +20,21 @@ while (continuarCompra) {
 
     if (elegir === 0) {
         const carritoFinal = carrito.reduce((acum, producto) => acum + producto.total, 0);
-        alert('El monto total a pagar por los productos añadidos es : $' + carritoFinal);
+        alert('El monto total del carrito es : $' + carritoFinal);
         continuarCompra = false;  
     } else if (productoEncontrado){
         let elegirCantidad = parseInt(prompt('Elige la cantidad'));
+
         if (!isNaN(elegirCantidad) && elegirCantidad > 0) {
             let totalElegido = elegirCantidad * productoEncontrado.precio;
             alert('El monto total de estos productos es de: $' + totalElegido);
             carrito.push({producto: productoEncontrado.nombre, cantidad: elegirCantidad, total: totalElegido});
+
         } else {
             alert('Cantidad no válida, vuelve a intentarlo');
         }
+
+
     } else {
         alert('Producto no encontrado, vuelve a intentarlo');
     }
