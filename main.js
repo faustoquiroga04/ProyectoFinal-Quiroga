@@ -19,22 +19,24 @@ while (continuarCompra) {
     const productoEncontrado = productos.find((producto) => producto.id === elegir);
 
     if (elegir === 0) {
-        const carritoFinal = carrito.reduce((acum, producto) => acum + producto.total, 0);
-        alert('El monto total del carrito es : $' + carritoFinal);
-        continuarCompra = false;  
-    } else if (productoEncontrado){
+        if (carrito.length > 0) {
+            const carritoFinal = carrito.reduce((acum, item) => acum + item.total, 0);
+            let detalleCarrito = carrito.map(item => item.cantidad + ' x ' + item.producto + ' : $' + item.total).join('\n');
+            alert('Tu carrito:\n\n' + detalleCarrito + '\n\nMonto total a pagar: $' + carritoFinal);
+        } else {
+            alert('Tu carrito está vacío.');
+        }
+        continuarCompra = false;
+    } else if (productoEncontrado) {
         let elegirCantidad = parseInt(prompt('Elige la cantidad'));
 
         if (!isNaN(elegirCantidad) && elegirCantidad > 0) {
             let totalElegido = elegirCantidad * productoEncontrado.precio;
             alert('El monto total de estos productos es de: $' + totalElegido);
             carrito.push({producto: productoEncontrado.nombre, cantidad: elegirCantidad, total: totalElegido});
-
         } else {
             alert('Cantidad no válida, vuelve a intentarlo');
         }
-
-
     } else {
         alert('Producto no encontrado, vuelve a intentarlo');
     }
