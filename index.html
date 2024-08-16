@@ -1,11 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Segunda Preentrega</title>
+    <title>Tienda</title>
 </head>
 <body>
-    <script src="./main.js"></script>
+    <h1>Tienda de Productos</h1>
+    
+    <!-- Sección para seleccionar un producto -->
+    <select id="producto-seleccion">
+        <option value="">Selecciona un producto</option>
+    </select>
+    
+    <!-- Sección para ingresar la cantidad -->
+    <div id="cantidad-section" style="display: none;">
+        <input type="number" id="cantidad" placeholder="Cantidad" min="1">
+        <button id="agregar-al-carrito">Agregar al carrito</button>
+    </div>
+
+    <!-- Botón para ver el carrito -->
+    <button id="ver-carrito">Ver carrito</button>
+
+    <!-- Sección para mostrar mensajes -->
+    <div id="mensaje"></div>
+    
+    <!-- Sección para mostrar el carrito -->
+    <div id="carrito"></div>
+
+    <!-- Enlace al archivo JavaScript -->
+    <script src="main.js"></script>
 </body>
 </html>
