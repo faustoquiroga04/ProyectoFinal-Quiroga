@@ -2,7 +2,7 @@
 const productos = [
     { id: 1, nombre: 'Celular', precio: 1000 },
     { id: 2, nombre: 'Notebook', precio: 2000 },
-    { id: 3, nombre: 'Pc', precio: 3000 }
+    { id: 3, nombre: 'Pc', precio: 3000 },
 ];
 
 // Recupera el carrito desde el localStorage o inicializa uno vacío
@@ -19,11 +19,13 @@ function mostrarListaProductos() {
     });
 }
 
-// Muestra mensajes temporales en la interfaz
-function mostrarMensaje(mensaje) {
-    const mensajeDiv = document.getElementById('mensaje');
-    mensajeDiv.textContent = mensaje ?? 'Operación realizada';
-    setTimeout(() => mensajeDiv.textContent = '', 3000);
+// Muestra mensajes en la interfaz utilizando SweetAlert con botón "OK"
+function mostrarMensaje(mensaje, tipo = "success") {
+    swal({
+        text: mensaje,
+        icon: tipo,
+        button: "OK",
+    });
 }
 
 // Actualiza y muestra el contenido del carrito
@@ -50,7 +52,7 @@ function actualizarCarrito() {
 function eliminarDelCarrito(index) {
     carrito.splice(index, 1);
     localStorage.setItem('carrito', JSON.stringify(carrito));
-    mostrarMensaje('Producto eliminado del carrito.');
+    mostrarMensaje('Producto eliminado del carrito.', "warning");
     actualizarCarrito();
 }
 
@@ -76,7 +78,7 @@ document.getElementById('agregar-al-carrito').addEventListener('click', function
         actualizarCarrito();
         document.getElementById('cantidad').value = '';
     } else {
-        mostrarMensaje('Selecciona un producto y una cantidad válida.');
+        mostrarMensaje('Selecciona un producto y una cantidad válida.', "error");
     }
 });
 
